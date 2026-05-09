@@ -8,7 +8,7 @@
 Dashboard web interactivo construido con Python, Streamlit y SQLite que permite
 analizar métricas de ventas con filtros dinámicos por año, categoría, región y segmento.
 
-🔗 **[Ver demo en vivo](https://TU-APP.streamlit.app)** ← (completar después del deploy)
+🔗 **[Ver demo en vivo](https://TU-APP.streamlit.app)**
 
 ---
 
