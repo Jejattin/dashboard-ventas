@@ -3,11 +3,30 @@ app.py — Dashboard de Ventas · Streamlit + SQLite
 Correr con: streamlit run app.py
 """
 
+import os
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 from sqlalchemy import create_engine
+
+# ── Auto ETL: crear BD si no existe ──────────────────────────────────────────
+DB_PATH  = "database/ventas.db"
+CSV_PATH = "data/superstore.csv"
+
+if not os.path.exists(DB_PATH):
+    os.makedirs("database", exist_ok=True)
+    df_etl = pd.read_csv(CSV_PATH, encoding='latin-1')
+    df_etl.columns = (df_etl.columns.str.strip().str.lower()
+                      .str.replace(' ', '_').str.replace('-', '_'))
+    df_etl['order_date'] = pd.to_datetime(df_etl['order_date'], errors='coerce')
+    df_etl['ship_date']  = pd.to_datetime(df_etl['ship_date'],  errors='coerce')
+    df_etl['year']       = df_etl['order_date'].dt.year
+    df_etl['month']      = df_etl['order_date'].dt.month
+    df_etl['month_name'] = df_etl['order_date'].dt.strftime('%B')
+    df_etl.drop_duplicates(inplace=True)
+    _engine = create_engine(f"sqlite:///{DB_PATH}")
+    df_etl.to_sql("ventas", _engine, if_exists="replace", index=False)
 
 # ── Página ────────────────────────────────────────────────────────────────────
 st.set_page_config(
