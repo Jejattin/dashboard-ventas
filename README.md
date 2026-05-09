@@ -94,4 +94,3 @@ Ingeniero de Sistemas | Data Analyst
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)](https://github.com/Jejattin)
 
 ---
-*Proyecto parte del portafolio de análisis de datos — Mayo 2026*
