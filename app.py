@@ -12,7 +12,7 @@ from sqlalchemy import create_engine
 
 # ── Auto ETL: crear BD si no existe ──────────────────────────────────────────
 DB_PATH  = "database/ventas.db"
-CSV_PATH = "data/superstore.csv"
+CSV_PATH = "data/Sample - Superstore.csv"
 
 if not os.path.exists(DB_PATH):
     os.makedirs("database", exist_ok=True)
